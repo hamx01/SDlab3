@@ -45,22 +45,23 @@ int main() {
     unsigned int wierzcholek = 0;
 
 
-    std::cout << "Podaj wierzchołek startowy: ";
+    std::cout << "Podaj wierzcholek startowy: ";
     std::cin >> start;
-
-    std::cout << "Podaj do którego wierzchołka chcesz znaleźć najkrótszą drogę: ";
+    start -= 1;
+	
+    std::cout << "Podaj do ktorego wierzcholka chcesz znalezc najkrotsza droge: ";
     std::cin >> wierzcholek;
-
+    wierzcholek -= 1;
 
     // Wyznaczanie najkrótszej ścieżki od wierzchołka 0 do wszystkich pozostałych
     std::vector<int> dist = bellman_ford(start, adjacency_matrix);
 
     if(wierzcholek > dist.size() || wierzcholek < 0 || start > dist.size() || start < 0) {
-        std::cout << "Nie ma takiego wierzchołka";
+        std::cout << "Nie ma takiego wierzcholka";
         return 1;
     }
 
-    std::cout << "Najkrótsza ścieżka od " << start << " do " << wierzcholek << ": " << dist[wierzcholek] << std::endl;
+    std::cout << "Najkrotsza sciezka od " << start+1 << " do " << wierzcholek+1 << ": " << dist[wierzcholek] << std::endl;
 
     return 0;
 }
