@@ -1,7 +1,6 @@
 #include <vector>
 #include <limits>
 #include <iostream>
-#include <algorithm>
 
 std::pair<std::vector<int>, std::vector<int>> bellman_ford(unsigned int start, const std::vector<std::vector<int>>& adjacency_matrix) {
     int n = (int)adjacency_matrix.size();
@@ -57,26 +56,31 @@ int main() {
     std::cin >> start;
     start -= 1;
 
+    std::cout << "Podaj wierzcholek koncowy:";
+    unsigned int end;
+    std::cin >> end;
+    end -= 1;
+
     auto [dist, pred] = bellman_ford(start, adjacency_matrix);
 
     std::cout << "-----------------------------------------------------------" << std::endl;
-    for(int i = 0; i < dist.size(); i++) {
-        if(i != start) {
-            std::cout << "Optymalna traektoria sterowan od " << start+1 << " do " << i+1 << " wynosi: ";
-            auto path = reconstruct_path(start, i, pred);
+//    for(int i = 0; i < dist.size(); i++) {
+        if(end != start) {
+            std::cout << "Optymalna traektoria sterowan od " << start+1 << " do " << end+1 << " wynosi: ";
+            auto path = reconstruct_path(start, end, pred);
             for(int v : path) {
                 std::cout << v+1 << " ";
             }
             std::cout << std::endl;
-            std::cout << "Wskaznik jakosci J: " << dist[i] << std::endl;
+            std::cout << "Wskaznik jakosci J: " << dist[end] << std::endl;
             std::cout << "-----------------------------------------------------------" << std::endl;
         } else {
 //            std::cout << "-----------------------------------------------------------" << std::endl;
-            std::cout << "Optymalna traektoria sterowan od " << start+1 << " do " << i+1 << " wynosi: " << start+1 << std::endl;
+            std::cout << "Optymalna traektoria sterowan od " << start+1 << " do " << end+1 << " wynosi: " << start+1 << std::endl;
             std::cout << "Wskaznik jakosci J: " << start+1 << std::endl;
             std::cout << "-----------------------------------------------------------" << std::endl;
         }
-    }
+//    }
 
     return 0;
 }
