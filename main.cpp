@@ -1,6 +1,7 @@
 #include <vector>
 #include <limits>
 #include <iostream>
+#include <algorithm>
 
 std::pair<std::vector<int>, std::vector<int>> bellman_ford(unsigned int start, const std::vector<std::vector<int>>& adjacency_matrix) {
     int n = (int)adjacency_matrix.size();
@@ -40,13 +41,30 @@ std::vector<int> reconstruct_path(int start, int end, const std::vector<int>& pr
 }
 
 int main() {
+//    std::vector<std::vector<int>> adjacency_matrix = {
+//            {0, 2, 0, 0, 1, 0},
+//            {2, 0, 3, 0, 4, 0},
+//            {0, 3, 0, 1, 0, 0},
+//            {0, 0, 1, 0, 2, 2},
+//            {1, 4, 0, 2, 0, 0},
+//            {0, 0, 0, 2, 0, 0}
+//    };
+
     std::vector<std::vector<int>> adjacency_matrix = {
-            {0, 2, 0, 0, 1, 0},
-            {2, 0, 3, 0, 4, 0},
-            {0, 3, 0, 1, 0, 0},
-            {0, 0, 1, 0, 2, 2},
-            {1, 4, 0, 2, 0, 0},
-            {0, 0, 0, 2, 0, 0}
+          // 1  2  3  4  5  6  7  8  9 10 11 12 13
+            {0, 2, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0}, // 1
+            {2, 0, 0, 0, 3, 2, 4, 0, 0, 0, 0, 0, 0}, // 2
+            {4, 0, 0, 0, 2, 8, 1, 0, 0, 0, 0, 0, 0}, // 3
+            {1, 0, 0, 0, 7, 4, 6, 0, 0, 0, 0, 0, 0}, // 4
+            {0, 3, 2, 7, 0, 0, 0, 2, 4, 0, 0, 0, 0}, // 5
+            {0, 2, 8, 4, 0, 0, 0, 3, 7, 0, 0, 0, 0}, // 6
+            {0, 4, 1, 6, 0, 0, 0, 2, 5, 0, 0, 0, 0}, // 7
+            {0, 0, 0, 0, 2, 3, 2, 0, 0, 6, 5, 9, 0}, // 8
+            {0, 0, 0, 0, 4, 7, 5, 0, 0, 5, 1, 7, 0}, // 9
+            {0, 0, 0, 0, 0, 0, 0, 6, 5, 0, 0, 0, 2}, // 10
+            {0, 0, 0, 0, 0, 0, 0, 5, 1, 0, 0, 0, 4}, // 11
+            {0, 0, 0, 0, 0, 0, 0, 9, 7, 0, 0, 0, 2}, // 12
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 4, 2, 0}  // 13
     };
 
     unsigned int start = 0;
