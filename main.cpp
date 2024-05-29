@@ -52,10 +52,12 @@ int main() {
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 4, 2, 0}  // 13
     };
 
+    unsigned int n = macierz_sasiedztwa.size();
+
     unsigned int start = 0;
 
     std::cout << "Algorytm wyszukiwania najkrotszej sciezki w grafie nieskierowanym\n";
-    std::cout << "Podaj wierzcholek startowy:";
+    std::cout << "Podaj wierzcholek startowy(1-" << n << "):";
     std::cin >> start;
     start -= 1;
 
@@ -63,6 +65,11 @@ int main() {
     unsigned int end;
     std::cin >> end;
     end -= 1;
+
+    if(start >= n || end >= n) {
+        std::cout << "Podano zly wierzcholek" << std::endl;
+        return 1;
+    }
 
     auto [dist, pred] = znajdz_droge(start, macierz_sasiedztwa);
 
