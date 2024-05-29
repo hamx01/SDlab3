@@ -3,8 +3,8 @@
 #include <iostream>
 #include <algorithm>
 
-std::pair<std::vector<int>, std::vector<int>> znajdz_droge(unsigned int start, const std::vector<std::vector<int>>& adjacency_matrix) {
-    int n = (int)adjacency_matrix.size();
+std::pair<std::vector<int>, std::vector<int>> znajdz_droge(unsigned int start, const std::vector<std::vector<int>>& macierz_sasiedztwa) {
+    int n = (int)macierz_sasiedztwa.size();
     std::vector<int> dist(n, std::numeric_limits<int>::max());
     std::vector<int> pred(n, -1);
     dist[start] = 0;
@@ -12,10 +12,11 @@ std::pair<std::vector<int>, std::vector<int>> znajdz_droge(unsigned int start, c
     for (int i = 0; i < n - 1; ++i) {
         for (int u = 0; u < n; ++u) {
             for (int v = 0; v < n; ++v) {
-                if (adjacency_matrix[u][v] != 0 &&
+                if (macierz_sasiedztwa[u][v] != 0 &&
                 dist[u] != std::numeric_limits<int>::max() &&
-                dist[u] + adjacency_matrix[u][v] < dist[v]) {
-                    dist[v] = dist[u] + adjacency_matrix[u][v];
+                dist[u] + macierz_sasiedztwa[u][v] < dist[v])
+                {
+                    dist[v] = dist[u] + macierz_sasiedztwa[u][v];
                     pred[v] = u;
                 }
             }
