@@ -3,7 +3,7 @@
 #include <iostream>
 #include <algorithm>
 
-std::pair<std::vector<int>, std::vector<int>> bellman_ford(unsigned int start, const std::vector<std::vector<int>>& adjacency_matrix) {
+std::pair<std::vector<int>, std::vector<int>> znajdz_droge(unsigned int start, const std::vector<std::vector<int>>& adjacency_matrix) {
     int n = (int)adjacency_matrix.size();
     std::vector<int> dist(n, std::numeric_limits<int>::max());
     std::vector<int> pred(n, -1);
@@ -12,7 +12,9 @@ std::pair<std::vector<int>, std::vector<int>> bellman_ford(unsigned int start, c
     for (int i = 0; i < n - 1; ++i) {
         for (int u = 0; u < n; ++u) {
             for (int v = 0; v < n; ++v) {
-                if (adjacency_matrix[u][v] != 0 && dist[u] != std::numeric_limits<int>::max() && dist[u] + adjacency_matrix[u][v] < dist[v]) {
+                if (adjacency_matrix[u][v] != 0 &&
+                dist[u] != std::numeric_limits<int>::max() &&
+                dist[u] + adjacency_matrix[u][v] < dist[v]) {
                     dist[v] = dist[u] + adjacency_matrix[u][v];
                     pred[v] = u;
                 }
@@ -22,7 +24,7 @@ std::pair<std::vector<int>, std::vector<int>> bellman_ford(unsigned int start, c
     return {dist, pred};
 }
 
-std::vector<int> reconstruct_path(int end, const std::vector<int>& pred) {
+std::vector<int> zapisz_sciezke(int end, const std::vector<int>& pred) {
     std::vector<int> path;
     for(int v = end; v != -1; v = pred[v]) {
         path.push_back(v);
@@ -32,7 +34,7 @@ std::vector<int> reconstruct_path(int end, const std::vector<int>& pred) {
 }
 
 int main() {
-    std::vector<std::vector<int>> adjacency_matrix = {
+    std::vector<std::vector<int>> macierz_sasiedztwa = {
           // 1  2  3  4  5  6  7  8  9 10 11 12 13
             {0, 2, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0}, // 1
             {2, 0, 0, 0, 3, 2, 4, 0, 0, 0, 0, 0, 0}, // 2
@@ -61,12 +63,12 @@ int main() {
     std::cin >> end;
     end -= 1;
 
-    auto [dist, pred] = bellman_ford(start, adjacency_matrix);
+    auto [dist, pred] = znajdz_droge(start, macierz_sasiedztwa);
 
     std::cout << "-----------------------------------------------------------" << std::endl;
         if(end != start) {
             std::cout << "Optymalna traektoria sterowan od " << start+1 << " do " << end+1 << " wynosi: ";
-            std::vector<int> path = reconstruct_path(int(end), pred);
+            std::vector<int> path = zapisz_sciezke(int(end), pred);
             for(int v : path) {
                 std::cout << v+1 << " ";
             }

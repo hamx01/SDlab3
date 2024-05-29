@@ -1,6 +1,6 @@
-Funkcja `bellman_ford` implementuje algorytm Bellmana-Forda, który jest używany do znalezienia najkrótszej ścieżki w grafie ważonym. Oto szczegółowe wyjaśnienie linijka po linijce:
+Funkcja `znajdz_droge` implementuje algorytm Bellmana-Forda, który jest używany do znalezienia najkrótszej ścieżki w grafie ważonym. Oto szczegółowe wyjaśnienie linijka po linijce:
 
-1. Funkcja `bellman_ford` przyjmuje dwa argumenty: `start`, który jest punktem początkowym, oraz `adjacency_matrix`, która jest macierzą sąsiedztwa reprezentującą graf.
+1. Funkcja `znajdz_droge` przyjmuje dwa argumenty: `start`, który jest punktem początkowym, oraz `adjacency_matrix`, która jest macierzą sąsiedztwa reprezentującą graf.
 
 2. Najpierw, funkcja tworzy dwie listy: `dist` i `pred`. `dist` przechowuje najkrótsze odległości od punktu początkowego do wszystkich innych wierzchołków, a `pred` przechowuje poprzednik każdego wierzchołka na najkrótszej ścieżce.
 
