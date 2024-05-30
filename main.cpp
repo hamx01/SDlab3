@@ -68,6 +68,7 @@ int main() {
 
     if(start >= n || end >= n) {
         std::cout << "Podano zly wierzcholek" << std::endl;
+        system("pause");
         return 1;
     }
 
@@ -83,10 +84,12 @@ int main() {
             std::cout << std::endl;
             std::cout << "Wskaznik jakosci J: " << dist[end] << std::endl;
             std::cout << "-----------------------------------------------------------" << std::endl;
+            system("pause");
         } else {
             std::cout << "Optymalna traektoria sterowan od " << start+1 << " do " << end+1 << " wynosi: " << start+1 << std::endl;
             std::cout << "Wskaznik jakosci J: " << start+1 << std::endl;
             std::cout << "-----------------------------------------------------------" << std::endl;
+            system("pause");
         }
 
     return 0;
